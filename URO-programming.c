@@ -2,8 +2,69 @@
 #include <string.h>
 
 int hitung(int i, char j[2], int k);
+void kalkulator();
+void polinomial();
 
 int main()
+{
+    // Input pilihan kalkulator atau polinomial
+    int pilih=0;
+
+    while (pilih<3){
+        printf("\n\nPilih salah satu opsi di bawah ini:\n 1. Kalkulator (+,-,*)\n");
+        printf(" 2. Penurunan fungsi polinomial\n 3. Keluar\n");
+        printf("\nPilihan Anda: ");
+        scanf("%d", &pilih);
+
+        // Pilihan
+        if (pilih==1){
+            kalkulator();
+        }else if (pilih==2){
+            polinomial();
+        }else if (pilih!=3){
+            printf("Pilihan invalid.\n\n");
+            printf("Pilih salah satu opsi di bawah ini:\n1. Kalkulator (+,-,*)\n");
+            printf("2. Penurunan fungsi polinomial\n3. Keluar\n");
+            printf("\nPilihan Anda: ");
+            scanf("%s", pilih);
+        }
+    }
+    printf("\nTerima kasih telah menggunakan program ini.");
+    return 0;
+}
+
+void polinomial()
+{
+    // Deklarasi variabel
+    int m, n, koef;
+    int t[100];
+
+    // Input jumlah pangkat
+    printf("\nMasukkan jumlah pangkat terbesar: ");
+    scanf("%d", &m);
+
+    // Input fungsi polinomial
+    n = m;
+    while (n > 0){
+        printf("Koefisien x pangkat %d: ", n);
+        scanf("%d", &t[n]);
+        n--;
+    }
+    printf("Berikut ini adalah turunan dari fungsi polinomial anda: ");
+    n = m;
+    while (n > 1){
+        koef = t[n] * m;
+        m--;
+        n--;
+        printf("%d x^%d + ", koef, m);
+    }
+    koef = t[n]*m;
+    n--;
+    printf("%d", koef);
+    return;
+}
+
+void kalkulator()
 {
     // Deklarasi variabel
     int a, b, c;
@@ -11,9 +72,9 @@ int main()
     char y[2];
 
     // Keterangan operator
-    printf("Operator:\n\n");
-    printf("Penjumlahan (+)\nPengurangan (-)\nPerkalian (*)\n");
-    printf("Pengulangan (AC)\nMenutup program (END)\n\n");
+    printf("\nKALKULATOR\n\nOperator:\n");
+    printf(" - Penjumlahan (+)\n - Pengurangan (-)\n - Perkalian (*)\n");
+    printf(" - Pengulangan (AC)\n - Menutup kalkulator (END)\n\n");
     
     // Input kalkulasi pertama
     printf("Angka: "); scanf("%d", &a);
@@ -21,8 +82,8 @@ int main()
 
     // Cek Operator
     if(strcmp(x,"END") == 0){
-        printf("Terima kasih telah menggunakan kalkulator.");
-        return 0;
+        printf("\nTerima kasih telah menggunakan kalkulator.");
+        return;
     }
     while(strcmp(x,"AC") == 0){
         a = 0;
@@ -57,8 +118,8 @@ int main()
         }
         while (strcmp(y,"+") != 0 && strcmp(y,"-") != 0 && strcmp(y,"*") != 0){
             if(strcmp(x,"END") == 0){
-                printf("Terima kasih telah menggunakan kalkulator.");
-                return 0;
+                printf("\nTerima kasih telah menggunakan kalkulator.");
+                return;
             }
             printf("Operator invalid.");
             printf("\nOperator: "); scanf("%s", y);
@@ -73,8 +134,8 @@ int main()
         // Tampilkan hasil, atau input kalkulasi kedua
         printf("\nOperator: "); scanf("%s", y);
     }
-    printf("Terima kasih telah menggunakan kalkulator.");
-    return 0;
+    printf("\nTerima kasih telah menggunakan kalkulator.");
+    return;
 }
 
 int hitung(int i, char j[2], int k)
